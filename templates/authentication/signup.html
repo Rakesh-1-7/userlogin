@@ -1,50 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup Page</title>
+    <title>Signin Page</title>
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css" rel="stylesheet" />
+    <style>
+        .divider:after,
+        .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+
+        .h-custom {
+            height: calc(100% - 73px);
+        }
+
+        @media (max-width: 450px) {
+            .h-custom {
+                height: 100%;
+            }
+        }
+    </style>
+
 </head>
+
 <body>
 
     {%for message in messages%}
     <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
         <strong>Message:</strong>{{ message }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+
     </div>
     {% endfor %}
-    
-    <h1>Signup</h1>
+    <!-- <h1>Signin</h1> -->
+    <section class="vh-100">
+        <div class="container-fluid h-custom">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <!-- <div class="col-md-9 col-lg-6 col-xl-5">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                        class="img-fluid" alt="Sample image">
+                </div> -->
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
 
-    <form action="/signup" method="post">
-        {% csrf_token %}
+                    <h1>Sign Up</h1>
+                    <form action="signup" method="post">
+                        {% csrf_token %}
 
-        <label for="">Username</label>
-        <input type="text" name="username" id="username" placeholder="Create a username(only letters and numbers)" required>
-        <br>
-        <label for="">Firstname</label>
-        <input type="text" name="fname" id="fname" placeholder="Enter your Firstname" required>
-        
-        <br>
-        <label for="">Lastname</label>
-        <input type="text" name="lname" id="lname" placeholder="Enter your Lastname" required>
-        
-        <br>
-        <label for="">Email</label>
-        <input type="email" name="email" id="email" placeholder="Enter your Email Address" required>
-        
-        <br>
-        <label for="">Password</label>
-        <input type="password" name="pass1" id="pass1" placeholder="Create your Password" required>
-        
-        <br>
-        <label for="">Confirm Password</label>
-        <input type="password" name="pass2" id="pass2" placeholder="Confirm your Password" required>
-        
-        <br>
-        <button type="submit"> Sign Up</button>
-    </form>
+                        <!-- Username -->
+                        <div class="form-outline mb-4">
+                            <input type="text" name="username" id="username" class="form-control form-control-lg"
+                                placeholder="Create an Username" />
+                            <label class="form-label" for="form3Example3">Username</label>
+                        </div>
+
+                        <!-- First name -->
+                        <div class="form-outline mb-4">
+                            <input type="text" name="fname" id="fname" class="form-control form-control-lg"
+                                placeholder="Enter your Firstname" />
+                            <label class="form-label" for="form3Example3">Firstname</label>
+                        </div>
+
+                        <!-- Last Name -->
+                        <div class="form-outline mb-4">
+                            <input type="text" name="lname" id="lname" class="form-control form-control-lg"
+                                placeholder="Enter your Lastname" />
+                            <label class="form-label" for="form3Example3">Lastname</label>
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="email" name="email" id="email" class="form-control form-control-lg"
+                                placeholder="Enter your Email Address" />
+                            <label class="form-label" for="form3Example3">Email address</label>
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-3">
+                            <input type="password" id="pass1" name="pass1" class="form-control form-control-lg"
+                                placeholder="Create your password" />
+                            <label class="form-label" for="form3Example4">Password</label>
+                        </div>
+
+                        <!-- Password Confirmation -->
+                        <div class="form-outline mb-3">
+                            <input type="password" id="pass2" name="pass2" class="form-control form-control-lg"
+                                placeholder="Re-enter password" />
+                            <label class="form-label" for="form3Example4">Confirm Password</label>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <a href="#!" class="text-body">Forgot password?</a>
+                        </div>
+
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                            <button type="submit" class="btn btn-primary btn-lg"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem;">Sign Up</button>
+                            <p class="small fw-bold mt-2 pt-1 mb-0">Already have an account? <a href="/signin"
+                                    class="link-danger">Sign In</a></p>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div
+            class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+            <!-- Copyright -->
+            <div class="text-white mb-3 mb-md-0">
+                Copyright © 2022. All rights reserved.
+            </div>
+            <!-- Copyright -->
+
+            <!-- Right -->
+            <div>
+                <a href="#!" class="text-white me-4">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#!" class="text-white me-4">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#!" class="text-white me-4">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="#!" class="text-white">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+            <!-- Right -->
+        </div>
+    </section>
+
+
+
+
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"></script>
 </body>
+
 </html>

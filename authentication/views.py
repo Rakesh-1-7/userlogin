@@ -29,21 +29,21 @@ def signup(request):
 
         if User.objects.filter(username=username):
             messages.error(request, "Username already exists, Please try another username")
-            return redirect("home")
+            return redirect("signin")
         if User.objects.filter(email=email):
             messages.error(request, "Email already registered")
-            return redirect('home')
+            return redirect('signup')
         if len(username) > 10:
             messages.error(request,"Username must be under 10 characters.")
-            return redirect('home')
+            return redirect('signup')
         
         if pass1 != pass2:
             messages.error(request,"Passwords don't match!")
-            return redirect('home')
+            return redirect('signup')
 
         if not username.isalnum():
             messages.error(request,"Username must be Alpha-Numbeic.")
-            return redirect('home')
+            return redirect('signup')
 
 
         # Check for errorneous inputs
