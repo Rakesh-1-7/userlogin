@@ -61,7 +61,7 @@ def signup(request):
         
         # Email Address Confirmation Email
         current_site = get_current_site(request)
-        email_subject = "Confirm your Email @ GFG - Django Login!!"
+        email_subject = "Confirm your Email @ Django Login Website!!"
         message2 = render_to_string('email_confirmation.html',{
             
             'name': myuser.first_name,
@@ -84,9 +84,9 @@ def signup(request):
     return render(request, "authentication/signup.html")
 
 
-def activate(request,uidb64,token):
+def activate(request,uid64,token):
     try:
-        uid = force_str(urlsafe_base64_decode(uidb64))
+        uid = force_str(urlsafe_base64_decode(uid64))
         myuser = User.objects.get(pk=uid)
     except (TypeError,ValueError,OverflowError,User.DoesNotExist):
         myuser = None
