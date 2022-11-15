@@ -11,6 +11,14 @@ from django.utils.encoding import force_bytes,force_str
 from django.contrib.auth import authenticate, login, logout
 from . tokens import generate_token
 
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
+
 # Create your views here.
 def home(request):
     return render(request, "authentication/index.html")
@@ -112,7 +120,7 @@ def signin(request):
         if user is not None:
             login(request, user)
             fname = user.first_name
-            # messages.success(request, "Logged In Sucessfully!!")
+            messages.success(request, "Logged In Sucessfully!!")
             return render(request, "authentication/index.html",{"fname":fname})
         else:
             messages.error(request, "Bad Credentials!!")

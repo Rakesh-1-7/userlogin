@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title >Home</title>
+    <title>Home</title>
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
@@ -14,12 +14,13 @@
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css" rel="stylesheet" />
     <style>
-        body{
+        body {
             background-color: lightblue;
             max-height: 100vh;
             max-width: 100vw;
             overflow: hidden;
         }
+
         .divider:after,
         .divider:before {
             content: "";
@@ -40,27 +41,34 @@
     </style>
 
 </head>
+
 <body>
 
     {% for message in messages %}
-    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-        <strong>Message:</strong>{{ message }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        
+    <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+        <strong>Message: </strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
     {% endfor %}
 
-    <h1 style="position:relative;text-align:center;align-items: center;justify-content:center;padding: 40vh 0 0 0;">Welcome to Django website</h1>
+    <h1 style="position:relative;text-align:center;align-items: center;justify-content:center;padding: 40vh 0 0 0;">
+        Welcome to Django website</h1>
 
     {% if user.is_authenticated %}
     <h2 style="position:relative;left:45%;">Hi {{user.username}}!</h2>
     <h4 style="position:relative;text-align: center;">You are successfully logged in.</h4>
-    <button type="submit" style="position:relative;margin-left: 45%;" type="submit" class="btn btn-light btn-lg" data-mdb-ripple-color="dark"><a style="color: black;"><a href="/signout">Signout</a> </button>
+    <button type="submit" style="position:relative;margin-left: 45%;" type="submit" class="btn btn-light btn-lg"
+        data-mdb-ripple-color="dark"><a style="color: black;"><a href="/signout">Signout</a> </button>
 
     {% else %}
-    <button style="position:relative;left:42vw;" type="submit" class="btn btn-light btn-lg" data-mdb-ripple-color="dark"><a style="color: black;" href="/signup">Sign up</a> </button>
-    <button style="position:relative;left:42vw" type="submit" class="btn btn-dark btn-lg" data-mdb-ripple-color="light"><a style="color: white;" href="/signin">Sign in</a> </button>
+    <button style="position:relative;left:42vw;" type="submit" class="btn btn-light btn-lg"
+        data-mdb-ripple-color="dark"><a style="color: black;" href="/signup">Sign up</a> </button>
+    <button style="position:relative;left:42vw" type="submit" class="btn btn-dark btn-lg"
+        data-mdb-ripple-color="light"><a style="color: white;" href="/signin">Sign in</a> </button>
     {% endif %}
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"></script>
 </body>
+
 </html>
