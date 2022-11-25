@@ -21,7 +21,11 @@ MESSAGE_TAGS = {
 
 # Create your views here.
 def home(request):
-    return render(request, "authentication/index.html")
+    return render(request, "authentication/home/home.html")
+
+
+def upload(request):
+    return render(request, "authentication/upload/index.html")
 
 def signup(request):
     if request.method == "POST":
