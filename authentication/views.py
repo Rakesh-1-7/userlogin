@@ -125,7 +125,7 @@ def signin(request):
             login(request, user)
             fname = user.first_name
             messages.success(request, "Logged In Sucessfully!!")
-            return render(request, "authentication/index.html",{"fname":fname})
+            return render(request, "authentication/home/home.html",{"fname":fname})
         else:
             messages.error(request, "Bad Credentials!!")
             return redirect('home')
