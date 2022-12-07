@@ -223,7 +223,10 @@
   <br>
   <div class="dropdown" style="width: 100vw;">
     <h2 style="text-align: center;">Upload Notes/Question papers</h2>
-    <form action="" method="post">
+    <form method="post" enctype="multipart/form-data">
+
+      {% csrf_token %}
+
       <div class="mb-3" id="1" style="display: block">
         <label for="semester">Choose your semester</label>
         <select class="btn btn-default dropdown-toggle" name="semester" id="semester" onchange="populate1(this.id, 'course','2')">
@@ -255,13 +258,15 @@
       </div>
       <div class="mb-3" id="4" onchange="document.getElementById('5').style.display = 'block'">
         <label for="myfile">Upload files:</label>
-        <input class="form-control" type="file" id="myfile" name="myfile" multiple /><br /><br />
+        <input class="form-control" type="file" id="upload" name="upload" accept=".doc, .docx, .pdf, .txt" multiple /><br /><br />
       </div>
       <div class="mb-3" id="5">
         <!-- <button type="button" class="btn btn-outline-primary">Submit</button> -->
-        <button type="button" class="btn btn-primary">Upload</button>
+        <button type="submit" class="btn btn-primary">Upload</button>
       </div>
     </form>
+
+    
   </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 

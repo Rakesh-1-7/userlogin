@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse, Http404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.core.mail import EmailMessage, send_mail
@@ -9,7 +9,9 @@ from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes,force_str
 from django.contrib.auth import authenticate, login, logout
+from django.core.files.storage import FileSystemStorage
 from . tokens import generate_token
+import os
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
@@ -21,10 +23,20 @@ MESSAGE_TAGS = {
 
 # Create your views here.
 def home(request):
+    if request.method == 'POST' and request.POST['resource']:
+        path="media"  
+        file_list =os.listdir(path)   
+        return render(request, 'authentication/home/home.html', {'files': file_list})
     return render(request, "authentication/home/home.html")
 
 
 def upload(request):
+    if request.method == 'POST' and request.FILES['upload']:
+        upload = request.FILES['upload']
+        fss = FileSystemStorage()
+        file = fss.save(upload.name, upload)
+        file_url = fss.url(file)
+        return render(request, "authentication/upload/index.html", {'file_url': file_url})
     return render(request, "authentication/upload/index.html")
 
 def signup(request):
@@ -137,3 +149,9 @@ def signout(request):
     logout(request)
     messages.success(request, "Logged Out Successfully!!")
     return redirect('home')
+
+def pdf_view(request, file):
+    try:
+        return FileResponse(open('media/'+file, 'rb'), content_type='application/pdf')
+    except FileNotFoundError:
+        raise Http404()
