@@ -128,8 +128,8 @@ def activate(request,uid64,token):
 
 def signin(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        pass1 = request.POST['pass1']
+        username = request.POST.get('username')
+        pass1 = request.POST.get('pass1')
         
         user = authenticate(username=username, password=pass1)
         
